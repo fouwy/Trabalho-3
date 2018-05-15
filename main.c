@@ -13,8 +13,21 @@ int main(int argc, char *argv[])
 {
     /* 1) iniciar comunicacao com exploradores
           NOTA: primeiros parametros deverao ser argc e argv */
+      int nExplorator, id, type;
+      int i;
+      int position[10][2];
 
+      intro(argc, argv, &nExplorator, position);
+      
+      printf("%d\n", nExplorator);
 
+     
+      for(i=0; i< nExplorator; i++) {
+            printf("%d %d\n", position[i][0], position[i][1]);
+      }
+      
+      printf("%c\n", explorator(&id, &type));
+      printf("%d\n", type);
     /* 2) comunicar com os exploradores e receber informacoes, 
           enquanto existem movimentacoes a realizar */
 
