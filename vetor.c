@@ -25,16 +25,9 @@ vetor* vetor_novo()
 
 void vetor_apaga(vetor* vec)
 {
-	int i;
-
 	if(vec == NULL)
 	return;
 
-	free(vec->elementos[i].type);
-	free(vec->elementos[i].x);
-	free(vec->elementos[i].y);
-
-	/* liberta memoria dos apontares para as strings */
 	free(vec->elementos);
 
 	/* liberta memoria da estrutura vetor */
@@ -114,12 +107,6 @@ int vetor_insere(vetor* vec, v_elemento* valor, int pos)
 		vec->elementos[i+1] = vec->elementos[i];
 	}
 
-	/* aloca espaco para a nova struct na posicao pos */
-	vec->elementos[pos].type = (int*)malloc( sizeof(int) );
-	vec->elementos[pos].x = (int*)malloc( sizeof(int) );
-	vec->elementos[pos].y = (int*)malloc( sizeof(int) );
-
-	// vec->elementos[pos] = *(v_elemento*)malloc( sizeof(v_elemento) );
 	
 	if(vec->elementos[pos].type == NULL || vec->elementos[pos].x == NULL || vec->elementos[pos].y == NULL)
 		return -1;
@@ -142,9 +129,9 @@ int vetor_remove(vetor* vec, int pos)
 	return -1;
 
 	/* liberta struct na posicao a remover */
-	free(vec->elementos[pos].type);
-	free(vec->elementos[pos].x);
-	free(vec->elementos[pos].y);
+	// free(vec->elementos[pos].type);
+	// free(vec->elementos[pos].x);
+	// free(vec->elementos[pos].y);
 
 	/* copia todos os elementos a partir da posicao pos+1 ate' ao fim do vetor para pos */
 	for(i=pos+1; i<vec->tamanho; i++)

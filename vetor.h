@@ -75,7 +75,6 @@ int vetor_insere(vetor *vec, v_elemento *valor, int pos);
 *  parametro: pos posicao
 *  retorno: -1 se ocorrer algum erro (p.ex. se valor pos indicar uma posicao invalida) ou 0 se bem sucedido
 */
-int vetor_remove(vetor* vec, int pos);
 
 /**
 *  atribui o valor especificado a uma posicao
@@ -89,6 +88,7 @@ int vetor_remove(vetor* vec, int pos);
 // ESTAS FUNCOES NAO DEVEM SER PRECISAS->>>>>>  int vetor_atribui(vetor *vec, int pos, const char* str);
 //                                      >>>>>>  int vetor_pesquisa(vetor *vec, const char* str);
 //                                      >>>>>>  int vetor_ordena(vetor *vec);
+//                                      >>>>>>  int vetor_remove(vetor* vec, int pos);
 /**
 *  devolve a posicao do elemento especificado
 *  parametro: vec apontador para vetor
