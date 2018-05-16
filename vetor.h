@@ -63,8 +63,8 @@ v_elemento* vetor_elemento(vetor *vec, int pos);
 *  insere um elemento na posicao especificada
 *  parametro: vec apontador para vetor
 *  parametro: valor struct a inserir
-*  parametro: pos indice do elemento onde se pretende inserir a string, se pos=tamanho ou pos=-1 insere no fim do vetor
-*  retorno: -1 se ocorrer algum erro (p.ex. se valor pos indicar uma posicao invalida) ou o valor de pos se bem sucedido
+*  parametro: pos indice do elemento onde se pretende inserir a struct, se pos=tamanho ou pos=-1 insere no fim do vetor
+*  retorno: -1 se ocorrer algum erro (p.ex. se valor pos indicar uma posicao invalida), o valor de pos se bem sucedido ou 0 se posicao for repetida 
 *  nota: se a capacidade nao for suficiente para guardar novo elemento, devera ser aumentada para 2x em relacao a capacidade anterior; inicialmente aumenta para capacidade 1
 */
 int vetor_insere(vetor *vec, int x, int y, int type, int pos);

@@ -76,8 +76,6 @@ int main(int argc, char *argv[])
 
     printf("%d %d\n", x2, y2);
 
-    // teste vetor
-    // printf("%d\n", posteste);
     
     for(i= 0; i< terrain->tamanho; i++)
     {
@@ -86,12 +84,12 @@ int main(int argc, char *argv[])
     }
     
 
-    // for(i= 0; i< terrain->tamanho; i++)
-    // {
-    //     printf("type-> %d\n", terrain->elementos[i].type);
-    //     printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
-    //     printf("\n");
-    // }
+    for(i= 0; i< terrain->tamanho; i++)
+    {
+        printf("type-> %d\n", terrain->elementos[i].type);
+        printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
+        printf("\n");
+    }
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
 

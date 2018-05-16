@@ -82,7 +82,15 @@ int vetor_insere(vetor *vec, int x, int y, int type, int pos)
 	int i;
 
 	if(vec == NULL || pos < -1 || pos > vec->tamanho)
-		return -3;
+		return -1;
+
+	
+	// controlo de repeticoes
+	for (i = 0; i < vec->tamanho; i++)
+	{
+		if ( x == vec->elementos[i].x && y == vec->elementos[i].y)
+			return 0;
+	}
 
 	/* aumenta elementos do vetor se capacidade nao for suficiente */
 	if(vec->tamanho == vec->capacidade)
@@ -107,9 +115,6 @@ int vetor_insere(vetor *vec, int x, int y, int type, int pos)
 		vec->elementos[i+1] = vec->elementos[i];
 	}
 
-	
-	// if(vec->elementos[pos].type == NULL || vec->elementos[pos].x == NULL || vec->elementos[pos].y == NULL)
-	// 	return -1;
 
 	/* copia valor */
 	vec->elementos[pos].type = type;
