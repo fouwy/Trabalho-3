@@ -71,26 +71,27 @@ int main(int argc, char *argv[])
     }
     printf("%d %d\n %d %d\n", x1, y1, x2, y2);
 
-    x1 = abs(x1)+abs(x2) + 1;
-    y1 = abs(y1)+abs(y2) + 1;
+    x2 = abs(x1)+abs(x2) + 1;
+    y2 = abs(y1)+abs(y2) + 1;
 
-    printf("%d %d\n", x1, y1);
+    printf("%d %d\n", x2, y2);
 
     // teste vetor
     // printf("%d\n", posteste);
     
     for(i= 0; i< terrain->tamanho; i++)
     {
-      terrain->elementos[i].x - x1;
-      terrain->elementos[i].y - y1;
+      terrain->elementos[i].x = terrain->elementos[i].x - x1;
+      terrain->elementos[i].y = terrain->elementos[i].y - y1;
     }
     
-    /*for(i= 0; i< terrain->tamanho; i++)
-    {
-        printf("type-> %d\n", terrain->elementos[i].type);
-        printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
-        printf("\n");
-    }*/
+
+    // for(i= 0; i< terrain->tamanho; i++)
+    // {
+    //     printf("type-> %d\n", terrain->elementos[i].type);
+    //     printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
+    //     printf("\n");
+    // }
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
 
