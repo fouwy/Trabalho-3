@@ -79,10 +79,12 @@ int main(int argc, char *argv[])
     // teste vetor
     // printf("%d\n", posteste);
     
-    // printf("type-> %d\n", terrain->elementos[posteste].type);
-    // printf("x-> %d\n", terrain->elementos[posteste].x);
-    // printf("y-> %d\n", terrain->elementos[posteste].y);
-
+    for(i= 0; i< terrain->tamanho; i++)
+    {
+        printf("type-> %d\n", terrain->elementos[i].type);
+        printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
+        printf("\n");
+    }
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
 
