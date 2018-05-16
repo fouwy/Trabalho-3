@@ -3,10 +3,16 @@
 #include "terra_incognita.h"
 #include "vetor.h"
 
+vetor *terrain;
+
 int mapa_pos(int x, int y)
 {
-    /* devolve tipo de terreno na posicao x,y */
+    for(int i=0; i<terrain->tamanho; i++){
+        if(terrain->elementos[i].x == x && terrain->elementos[i].y == y){
+            return terrain->elementos[i].type;
+        }
 
+   }
     return TERRA_INCOGNITA;
 }
 
@@ -15,7 +21,6 @@ int main(int argc, char *argv[])
     int nExplorator, position[MAX_EXPLORADORES][2], typus, id, xmin = 0, ymin = 0, xmax = 0, ymax = 0;
     char move;
     int i;
-    vetor *terrain;
 
     terrain = vetor_novo();
     
@@ -82,7 +87,6 @@ int main(int argc, char *argv[])
       terrain->elementos[i].x = terrain->elementos[i].x - xmin;
       terrain->elementos[i].y = terrain->elementos[i].y - ymin;
     }
-    
 
     // for(i= 0; i< terrain->tamanho; i++)
     // {
@@ -90,12 +94,12 @@ int main(int argc, char *argv[])
     //     printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
     //     printf("\n");
     // }
-    /* 2) comunicar com os exploradores e receber informacoes,
-          enquanto existem movimentacoes a realizar */
-
 
     /* 3) imprime e verifica o mapa
           NOTA: funcao mapa_pos e' o primeiro das funcoes */
+    tabula(mapa_pos, xmax, ymax);
+    veritas(mapa_pos, xmax, ymax);
+    relinquo();
 
 
     /* 4) termina comunicacoes com os exploradores */
