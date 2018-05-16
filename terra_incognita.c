@@ -80,6 +80,8 @@ void intro(int argc, char *argv[], int *nExplorator, int positio[][2])
         case 1:
             latitudo = incognita_rand_int(10,20);
             altitudo = incognita_rand_int(10,20);
+            printf("lat-> %d\n alt-> %d\n", latitudo, altitudo);
+            fflush(stdout);
             nEx = 3;
             statumX[0] = 0;
             statumY[0] = altitudo/2;
