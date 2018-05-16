@@ -30,11 +30,9 @@ void vetor_apaga(vetor* vec)
 	if(vec == NULL)
 	return;
 
-	/* liberta memoria de cada string */
-	for (i = 0; i < vec->tamanho; i++)
-	{
-		free(vec->elementos[i].str);
-	}
+	free(vec->elementos[i].type);
+	free(vec->elementos[i].x);
+	free(vec->elementos[i].y);
 
 	/* liberta memoria dos apontares para as strings */
 	free(vec->elementos);
@@ -43,28 +41,28 @@ void vetor_apaga(vetor* vec)
 	free(vec);
 }
 
-int vetor_atribui(vetor* vec, int pos, const char* valor)
-{
-	unsigned int len_valor;
+// int vetor_atribui(vetor* vec, int pos, const char* valor)
+// {
+// 	unsigned int len_valor;
 
-	if (vec == NULL || pos < 0 || pos >= vec->tamanho)
-	return -1;
+// 	if (vec == NULL || pos < 0 || pos >= vec->tamanho)
+// 	return -1;
 
-	len_valor = strlen(valor);
+// 	len_valor = strlen(valor);
 
-	/* reserva mais espaco se necessario */
-	if(len_valor > strlen(vec->elementos[pos].str))
-	{
-		vec->elementos[pos].str = (char*)realloc(vec->elementos[pos].str, (len_valor+1)*sizeof(char));
-		if(vec->elementos[pos].str == NULL)
-		return -1;
-	}
+// 	/* reserva mais espaco se necessario */
+// 	if(len_valor > strlen(vec->elementos[pos].str))
+// 	{
+// 		vec->elementos[pos].str = (char*)realloc(vec->elementos[pos].str, (len_valor+1)*sizeof(char));
+// 		if(vec->elementos[pos].str == NULL)
+// 		return -1;
+// 	}
 
-	/* copia valor */
-	strcpy(vec->elementos[pos].str, valor);
+// 	/* copia valor */
+// 	strcpy(vec->elementos[pos].str, valor);
 
-	return pos;
-}
+// 	return pos;
+// }
 
 int vetor_tamanho(vetor* vec)
 {
@@ -74,15 +72,19 @@ int vetor_tamanho(vetor* vec)
 	return vec->tamanho;
 }
 
-const char* vetor_elemento(vetor* vec, int indice)
-{
+v_elemento* vetor_elemento(vetor* vec, int indice)
+{	
+	v_elemento *v_aux;
+
+	*v_aux  = vec->elementos[indice];
+
 	if (vec == NULL || indice < 0 || indice >= vec->tamanho)
 	return NULL;
 
-	return vec->elementos[indice].str;
+	return v_aux;
 }
 
-int vetor_insere(vetor* vec, const char* valor, int pos)
+int vetor_insere(vetor* vec, v_elemento* valor, int pos)
 {
 	int i;
 
@@ -112,13 +114,20 @@ int vetor_insere(vetor* vec, const char* valor, int pos)
 		vec->elementos[i+1] = vec->elementos[i];
 	}
 
-	/* aloca espaco para a nova string na posicao pos */
-	vec->elementos[pos].str = (char*)calloc(strlen(valor)+1, sizeof(char));
-	if(vec->elementos[pos].str == NULL)
-	return -1;
+	/* aloca espaco para a nova struct na posicao pos */
+	vec->elementos[pos].type = (int*)malloc( sizeof(int) );
+	vec->elementos[pos].x = (int*)malloc( sizeof(int) );
+	vec->elementos[pos].y = (int*)malloc( sizeof(int) );
+
+	// vec->elementos[pos] = *(v_elemento*)malloc( sizeof(v_elemento) );
+	
+	if(vec->elementos[pos].type == NULL || vec->elementos[pos].x == NULL || vec->elementos[pos].y == NULL)
+		return -1;
 
 	/* copia valor */
-	strcpy(vec->elementos[pos].str, valor);
+	vec->elementos[pos].type = valor->type;
+	vec->elementos[pos].x = valor->x;
+	vec->elementos[pos].y = valor->y;
 
 	vec->tamanho++;
 
@@ -132,8 +141,10 @@ int vetor_remove(vetor* vec, int pos)
 	if(vec == NULL || pos < 0 || pos >= vec->tamanho)
 	return -1;
 
-	/* liberta string na posicao a remover */
-	free(vec->elementos[pos].str);
+	/* liberta struct na posicao a remover */
+	free(vec->elementos[pos].type);
+	free(vec->elementos[pos].x);
+	free(vec->elementos[pos].y);
 
 	/* copia todos os elementos a partir da posicao pos+1 ate' ao fim do vetor para pos */
 	for(i=pos+1; i<vec->tamanho; i++)
@@ -146,41 +157,41 @@ int vetor_remove(vetor* vec, int pos)
 	return 0;
 }
 
-int vetor_pesquisa(vetor* vec, const char* valor)
-{
-	int i;
+// int vetor_pesquisa(vetor* vec, const char* valor)
+// {
+// 	int i;
 
-	if(vec == NULL)
-	return -1;
+// 	if(vec == NULL)
+// 	return -1;
 
-	/* pesquisa sequencial */
-	for (i = 0; i < vec->tamanho; i++)
-	{
-		if (strcmp(vec->elementos[i].str, valor) == 0)
-		return i;
-	}
+// 	/* pesquisa sequencial */
+// 	for (i = 0; i < vec->tamanho; i++)
+// 	{
+// 		if (strcmp(vec->elementos[i].str, valor) == 0)
+// 		return i;
+// 	}
 
-	return -1;
-}
+// 	return -1;
+// }
 
-int vetor_ordena(vetor* vec)
-{
-	int i, j;
-	char *tmp;
+// int vetor_ordena(vetor* vec)
+// {
+// 	int i, j;
+// 	char *tmp;
 
-	if(vec == NULL)
-	return -1;
+// 	if(vec == NULL)
+// 	return -1;
 
-	/* ordenacao por insercao */
-	for (i = 1; i < vec->tamanho; i++)
-	{
-		tmp = vec->elementos[i].str;
-		for (j = i; j > 0 && strcmp(tmp, vec->elementos[j-1].str) < 0; j--)
-		{
-			vec->elementos[j] = vec->elementos[j-1];
-		}
-		vec->elementos[j].str = tmp;
-	}
+// 	/* ordenacao por insercao */
+// 	for (i = 1; i < vec->tamanho; i++)
+// 	{
+// 		tmp = vec->elementos[i].str;
+// 		for (j = i; j > 0 && strcmp(tmp, vec->elementos[j-1].str) < 0; j--)
+// 		{
+// 			vec->elementos[j] = vec->elementos[j-1];
+// 		}
+// 		vec->elementos[j].str = tmp;
+// 	}
 
-	return 0;
-}
+// 	return 0;
+// }
