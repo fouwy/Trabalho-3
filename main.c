@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
-         if(position[id][1] > x2){
-           x2 = position[id][1];
+         if(position[id][0] > x2){
+           x2 = position[id][0];
          }
        }
       if(move == 'O'){
@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
-         if(position[id][1] > x2){
-           x2 = position[id][1];
+         if(position[id][0] > x2){
+           x2 = position[id][0];
          }
        }
       move = explorator(&id, &typus);
