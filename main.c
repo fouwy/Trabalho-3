@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     x1 = abs(x1)+abs(x2) + 1;
     y1 = abs(y1)+abs(y2) + 1;
 
-    printf("%d %d\n", x1, y1);
+    printf("%d %d\n", x2, y2);
 
     // teste vetor
     printf("%d\n", terrain->elementos[posteste].type);
