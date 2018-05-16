@@ -81,10 +81,16 @@ int main(int argc, char *argv[])
     
     for(i= 0; i< terrain->tamanho; i++)
     {
+      terrain->elementos[i].x - x1;
+      terrain->elementos[i].y - y1;
+    }
+    
+    /*for(i= 0; i< terrain->tamanho; i++)
+    {
         printf("type-> %d\n", terrain->elementos[i].type);
         printf("(x, y)--> (%d, %d) \n", terrain->elementos[i].x, terrain->elementos[i].y);
         printf("\n");
-    }
+    }*/
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
 
