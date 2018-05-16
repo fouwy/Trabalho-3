@@ -14,27 +14,30 @@ int main(int argc, char *argv[])
 {
     int nExplorator, position[MAX_EXPLORADORES][2], typus, id, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     char move;
-    int posteste;
+    int i;
     vetor *terrain;
 
-    vetor_novo();
-
+    terrain = vetor_novo();
+    
     intro(argc, argv, &nExplorator, position);
 
     move = explorator(&id, &typus);
     while(move != 'X'){
       if(move == 'N'){
          position[id][1]--;
-         posteste = vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
+         vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
+
           if(position[id][1] < y1){
             y1 = position[id][1];
           }
           if(position[id][1] > y2){
-            y2 = position[id][1];
+            y2 = position[id][1]; 
           }
         }
       if(move == 'S'){
          position[id][1]++;
+         vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
+
          if(position[id][1] < y1){
            y1 = position[id][1];
          }
@@ -44,6 +47,8 @@ int main(int argc, char *argv[])
        }
       if(move == 'E'){
          position[id][0]--;
+         vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
+
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
@@ -53,6 +58,8 @@ int main(int argc, char *argv[])
        }
       if(move == 'O'){
          position[id][0]++;
+         vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
+
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
@@ -67,12 +74,14 @@ int main(int argc, char *argv[])
     x1 = abs(x1)+abs(x2) + 1;
     y1 = abs(y1)+abs(y2) + 1;
 
-    printf("%d %d\n", x2, y2);
+    printf("%d %d\n", x1, y1);
 
     // teste vetor
-    printf("%d\n", terrain->elementos[posteste].type);
-    printf("%d\n", terrain->elementos[posteste].x);
-    printf("%d\n", terrain->elementos[posteste].y);
+    // printf("%d\n", posteste);
+    
+    // printf("type-> %d\n", terrain->elementos[posteste].type);
+    // printf("x-> %d\n", terrain->elementos[posteste].x);
+    // printf("y-> %d\n", terrain->elementos[posteste].y);
 
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
