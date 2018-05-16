@@ -58,10 +58,10 @@ int main(int argc, char *argv[])
     }
     printf("%d %d\n %d %d\n", x1, y1, x2, y2);
 
-    x1 = abs(x1)+abs(x2);
-    y1 = abs(y1)+abs(y2);
+    x2 = abs(x1)+abs(x2);
+    y2 = abs(y1)+abs(y2);
 
-    printf("%d %d\n", x1, y1);
+    printf("%d %d\n", x2, y2);
 
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */
