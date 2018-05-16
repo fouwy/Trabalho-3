@@ -11,7 +11,7 @@ int mapa_pos(int x, int y)
 
 int main(int argc, char *argv[])
 {
-    int nExplorator, position[999][2], typus, id, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    int nExplorator, position[1000][2], typus, id, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     char move;
 
     intro(argc, argv, &nExplorator, position);
