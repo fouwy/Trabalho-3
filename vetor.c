@@ -77,7 +77,7 @@ v_elemento* vetor_elemento(vetor* vec, int indice)
 	return v_aux;
 }
 
-int vetor_insere(vetor* vec, v_elemento* valor, int pos)
+int vetor_insere(vetor *vec, int x, int y, int type, int pos)
 {
 	int i;
 
@@ -112,9 +112,9 @@ int vetor_insere(vetor* vec, v_elemento* valor, int pos)
 		return -1;
 
 	/* copia valor */
-	vec->elementos[pos].type = valor->type;
-	vec->elementos[pos].x = valor->x;
-	vec->elementos[pos].y = valor->y;
+	vec->elementos[pos].type = type;
+	vec->elementos[pos].x = x;
+	vec->elementos[pos].y = y;
 
 	vec->tamanho++;
 

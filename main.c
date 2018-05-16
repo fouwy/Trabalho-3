@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "terra_incognita.h"
+#include "vetor.h"
 
 int mapa_pos(int x, int y)
 {
@@ -11,8 +12,12 @@ int mapa_pos(int x, int y)
 
 int main(int argc, char *argv[])
 {
-    int nExplorator, position[1000][2], typus, id, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    int nExplorator, position[MAX_EXPLORADORES][2], typus, id, x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     char move;
+    int posteste;
+    vetor *terrain;
+
+    vetor_novo();
 
     intro(argc, argv, &nExplorator, position);
 
@@ -20,6 +25,7 @@ int main(int argc, char *argv[])
     while(move != 'X'){
       if(move == 'N'){
          position[id][1]--;
+         posteste = vetor_insere(terrain, position[id][0], position[id][1], typus, -1);
           if(position[id][1] < y1){
             y1 = position[id][1];
           }
@@ -41,8 +47,8 @@ int main(int argc, char *argv[])
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
-         if(position[id][1] > x2){
-           x2 = position[id][1];
+         if(position[id][0] > x2){
+           x2 = position[id][0];
          }
        }
       if(move == 'O'){
@@ -50,18 +56,23 @@ int main(int argc, char *argv[])
          if(position[id][0] < x1){
            x1 = position[id][0];
          }
-         if(position[id][1] > x2){
-           x2 = position[id][1];
+         if(position[id][0] > x2){
+           x2 = position[id][0];
          }
        }
       move = explorator(&id, &typus);
     }
     printf("%d %d\n %d %d\n", x1, y1, x2, y2);
 
-    x1 = abs(x1)+abs(x2);
-    y1 = abs(y1)+abs(y2);
+    x1 = abs(x1)+abs(x2) + 1;
+    y1 = abs(y1)+abs(y2) + 1;
 
     printf("%d %d\n", x1, y1);
+
+    // teste vetor
+    printf("%d\n", terrain->elementos[posteste].type);
+    printf("%d\n", terrain->elementos[posteste].x);
+    printf("%d\n", terrain->elementos[posteste].y);
 
     /* 2) comunicar com os exploradores e receber informacoes,
           enquanto existem movimentacoes a realizar */

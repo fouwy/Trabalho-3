@@ -67,7 +67,7 @@ v_elemento* vetor_elemento(vetor *vec, int pos);
 *  retorno: -1 se ocorrer algum erro (p.ex. se valor pos indicar uma posicao invalida) ou o valor de pos se bem sucedido
 *  nota: se a capacidade nao for suficiente para guardar novo elemento, devera ser aumentada para 2x em relacao a capacidade anterior; inicialmente aumenta para capacidade 1
 */
-int vetor_insere(vetor *vec, v_elemento *valor, int pos);
+int vetor_insere(vetor *vec, int x, int y, int type, int pos);
 
 /**
 *  remove o elemento da posicao especificada
