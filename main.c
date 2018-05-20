@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     tabula(mapa_pos, xmax, ymax);
     veritas(mapa_pos, xmax, ymax);
     relinquo();
-
+    vetor_apaga(terrain);
 
     /* 4) termina comunicacoes com os exploradores */
 
